@@ -2,6 +2,6 @@
 
 ---
 
-.env Structure
-MONGO_URL=< your DB connection url >
+.env Structure <br>
+MONGO_URL=< your DB connection url > <br>
 PORT=4000
