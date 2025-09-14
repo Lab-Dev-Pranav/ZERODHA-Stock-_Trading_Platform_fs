@@ -1,0 +1,38 @@
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  padding: 0 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.buy,
+.sell {
+  min-width: 50px;
+  height: 32px;
+}
+
+.action,
+.btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.chart {
+  font-size: 18px;
+}

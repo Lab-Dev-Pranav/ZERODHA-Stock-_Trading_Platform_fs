@@ -1,0 +1,9 @@
+.partner-text {
+  font-size: 14px;
+  padding-top: 20px;
+}
+
+.my-button-hover-dark:hover {
+  background-color: black;
+  color: white;
+}
