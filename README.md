@@ -20,7 +20,7 @@ This project demonstrates user authentication, order management, live market dat
 ### Backend
 - 🟢 Node.js + Express  
 - 🗄️ MongoDB with Mongoose  
-- 🔐 Passport.js (session-based auth) / JWT (if enabled)  
+- 🔐 Passport.js (session-based auth) / JWT (In Progress)  
 - 🌍 REST API  
 
 ### Tools
