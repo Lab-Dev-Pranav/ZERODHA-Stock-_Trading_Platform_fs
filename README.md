@@ -32,16 +32,16 @@ zerodha-clone/ <br>
 │ ├── schema/ # Validation schemas<br>
 │ ├── app.js # Main server file<br>
 │ └── .env # Environment variables (ignored in git)<br>
-│<br><br>
+│<br>
 │── frontend/ # React + Vite frontend<br>
 │ ├── src/ # React components & pages<br>
 │ ├── public/ # Static assets<br>
 │ └── vite.config.js<br>
-│<br><br>
+│<br>
 │── dashboard/ # Dashboard (React)<br>
 │ ├── src/ # Dashboard components<br>
 │ └── vite.config.js<br>
-│<br><br>
+│<br>
 └── README.md # Project documentation<br>
 
 yaml
