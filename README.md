@@ -13,7 +13,7 @@ This project demonstrates user authentication, order management, live market dat
 - 🔄 Axios for API calls  
 
 ### Dashboard
-- ⚡ React + Vite  
+- ⚡ [React](https://react.dev/) with [Vite](https://vitejs.dev/)  
 - 📊 Recharts (for graphs & charts)  
 - 🎨 TailwindCSS  
 
