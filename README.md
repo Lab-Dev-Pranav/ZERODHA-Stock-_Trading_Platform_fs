@@ -26,23 +26,23 @@ This project demonstrates user authentication, order management, live market dat
 
 ## 📂 Project Structure
 
-zerodha-clone/
-│── backend/ # Express + MongoDB server
-│ ├── model/ # Database models
-│ ├── schema/ # Validation schemas
-│ ├── app.js # Main server file
-│ └── .env # Environment variables (ignored in git)
-│
-│── frontend/ # React + Vite frontend
-│ ├── src/ # React components & pages
-│ ├── public/ # Static assets
-│ └── vite.config.js
-│
-│── dashboard/ # Dashboard (React)
-│ ├── src/ # Dashboard components
-│ └── vite.config.js
-│
-└── README.md # Project documentation
+zerodha-clone/ <br>
+│── backend/ # Express + MongoDB server<br>
+│ ├── model/ # Database models<br>
+│ ├── schema/ # Validation schemas<br>
+│ ├── app.js # Main server file<br>
+│ └── .env # Environment variables (ignored in git)<br>
+│<br><br>
+│── frontend/ # React + Vite frontend<br>
+│ ├── src/ # React components & pages<br>
+│ ├── public/ # Static assets<br>
+│ └── vite.config.js<br>
+│<br><br>
+│── dashboard/ # Dashboard (React)<br>
+│ ├── src/ # Dashboard components<br>
+│ └── vite.config.js<br>
+│<br><br>
+└── README.md # Project documentation<br>
 
 yaml
 Copy code
