@@ -12,6 +12,11 @@ This project demonstrates user authentication, order management, live market dat
 - 🎨 TailwindCSS for styling  
 - 🔄 Axios for API calls  
 
+### Dashboard
+- ⚡ React + Vite  
+- 📊 Recharts (for graphs & charts)  
+- 🎨 TailwindCSS  
+
 ### Backend
 - 🟢 Node.js + Express  
 - 🗄️ MongoDB with Mongoose  
