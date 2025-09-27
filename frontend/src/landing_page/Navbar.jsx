@@ -1,7 +1,56 @@
-import React from "react";
-import { Link } from "react-router-dom";
+
+
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function NavBar() {
+  const navigate = useNavigate();
+  const [cookies, , removeCookie] = useCookies(["token"]);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) return;
+
+      try {
+        const { data } = await axios.post(
+          "http://localhost:4000",
+          {},
+          { withCredentials: true }
+        );
+           console.log("nav res data - ",data);
+        const { status, user } = data;
+        if (status) {
+          setUsername(user);
+        } else {
+          removeCookie("token");
+          navigate("/auth");
+        }
+      } catch (err) {
+        removeCookie("token");
+        navigate("/auth");
+      }
+    };
+
+    verifyCookie();
+  }, [cookies, navigate, removeCookie]);
+
+  const handleLogout = () => {
+    removeCookie("token");
+    setUsername("");
+    navigate("/auth");
+  };
+
+  //  window.location.href = "http://localhost:3000";
+
+  const handledashbord = ()=>{
+   window.location.href = "http://localhost:3000";
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom fs--5">
       <div className="container-fluid" style={{ padding: "0 250px" }}>
@@ -30,11 +79,6 @@ function NavBar() {
         >
           <ul className="navbar-nav">
             <li className="nav-item me-3">
-              <Link className="nav-link" to="/signup">
-                Signup
-              </Link>
-            </li>
-            <li className="nav-item me-3">
               <Link className="nav-link" to="/about">
                 About
               </Link>
@@ -54,11 +98,43 @@ function NavBar() {
                 Support
               </Link>
             </li>
-            {/* <li className="nav-item me-3">
-              <Link className="nav-link" to="#">
-                <i class="fa-solid fa-bars"></i>
-              </Link>
-            </li> */}
+
+            {/* Auth Section */}
+            {username ? (
+              <>
+              
+                <li className="nav-item me-3 d-flex align-items-center">
+                  <span className="nav-link fw-bold text-primary">
+                   @{username}
+                  </span>
+                </li>
+                 <li className="nav-item">
+                     <button
+                      onClick={handledashbord}
+                    className="btn btn-outline-primary btn-sm"
+                  >
+                    Dashbord
+                  </button>
+                </li>
+                &nbsp;&nbsp;
+                <li className="nav-item">
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-outline-danger btn-sm"
+                  >
+                    Logout
+                  </button>
+                </li>
+                
+               
+              </>
+            ) : (
+              <li className="nav-item me-3">
+                <Link className="btn btn-primary px-3" to="/auth">
+                  Login / Signup
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

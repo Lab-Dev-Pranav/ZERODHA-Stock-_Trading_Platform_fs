@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
+const cookieParser = require("cookie-parser");
+
+const authRoute = require("./Routes/AuthRoute");
 
 //Models
 const { HoldingModel } = require("./model/HoldingModel");
@@ -14,11 +17,12 @@ const { PositionsModle } = require("./model/PositionsModle");
 const app = express();
 const port = process.env.PORT || 4000;
 
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173/";
 
 // Middleware
+app.use(cookieParser());
+
 app.use(express.json());
-app.use(cors());
 app.use(bodyParser.json());
 
 // DB Conecter
@@ -33,6 +37,19 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
+
+app.use(
+  cors({
+    origin: [ "http://localhost:3000", "http://localhost:5173" ], // ✅ exact frontend URL
+    credentials: true, // ✅ allow cookies/headers
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // ✅ allow these
+    allowedHeaders: ["Content-Type", "Authorization"], // ✅ allow headers
+  })
+);
+
+app.use(express.urlencoded({ extended: true })); // ✅ For form-data
+
+app.use("/", authRoute);
 
 // Routs
 
@@ -120,13 +137,13 @@ app.get("/orders", async (req, res) => {
 
 // auth routs
 
-app.post("/signup", async (req, res) => {
-  console.log("BE SIGNUP ROUTE", req.body);
-});
+// app.post("/signup", async (req, res) => {
+//   console.log("BE SIGNUP ROUTE", req.body);
+// });
 
-app.post("/login", async (req, res) => {
-  console.log("BE LOGIN ROUTE", req.body);
-});
+// app.post("/login", async (req, res) => {
+//   console.log("BE LOGIN ROUTE", req.body);
+// });
 
 app.get("/", (req, res) => {
   res.send(`🚀 App started on http://localhost:${port}`);

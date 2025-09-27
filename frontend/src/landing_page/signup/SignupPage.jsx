@@ -1,7 +1,7 @@
 // frontend/src/landing_page/signup/SignupPage.jsx
 import React, { useState } from "react";
 import Login from "./Login";
-import Signup from "./signup";
+import Signup from "./Signup";
 
 function SignupPage() {
   const [showLogin, setShowLogin] = useState(true); // default view: login
@@ -43,5 +43,15 @@ const styles = {
     marginLeft: "5px",
   },
 };
+
+// function SignupPage() {
+//   return (
+//       <div className="container">
+//         <div className="row">
+//           <h1>Signup Page</h1>
+//         </div>
+//       </div>
+//   );
+// }
 
 export default SignupPage;

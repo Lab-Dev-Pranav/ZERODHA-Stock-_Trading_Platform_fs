@@ -1,124 +1,128 @@
-// frontend/src/components/Login.jsx
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const change = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+const Login = () => {
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = inputValue;
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
   };
 
-  const togglePassword = () => {
-    setShowPassword((prev) => !prev);
-  };
+  const handleError = (err) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+  const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "bottom-left",
+    });
 
-  const submit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Form Data:", form);
-
     try {
-      const res = await axios.post("http://localhost:4000/login", form);
-      console.log("Login data sent", res.data); // log server response if needed
+      const { data } = await axios.post(
+        "http://localhost:4000/login",
+        {
+          ...inputValue,
+        },
+        { withCredentials: true }
+      );
+      console.log("login res data - ",data);
+      const { success, message } = data;
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          // window.location.href = "http://localhost:5173/";
+        }, 2000);
+      } else {
+        handleError(message);
+      }
     } catch (error) {
-      console.error("Login error:", error.response?.data || error.message);
+      console.log(error);
     }
+    setInputValue({
+      ...inputValue,
+      email: "",
+      password: "",
+    });
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={submit} style={styles.form}>
-        <h2 style={styles.title}>Login</h2>
-        <input
-          name="email"
-          value={form.email}
-          onChange={change}
-          placeholder="Email"
-          required
-          style={styles.input}
-        />
-        <div style={{ position: "relative" }}>
-          <input
-            name="password"
-            value={form.password}
-            onChange={change}
-            placeholder="Password"
-            type={showPassword ? "text" : "password"} // toggle type
-            required
-            style={{ ...styles.input, paddingRight: "40px" }}
-          />
-          <button type="button" onClick={togglePassword} style={styles.showBtn}>
-            {showPassword ? (
-              <i className="fa-solid fa-eye-slash"></i>
-            ) : (
-              <i className="fa-solid fa-eye"></i>
-            )}
-          </button>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6 col-lg-4">
+          <div className="card shadow-lg p-4 rounded-4">
+            <h2 className="text-center mb-4">Login Account</h2>
+            <form onSubmit={handleSubmit}>
+              {/* Email */}
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  className="form-control"
+                  placeholder="Enter your email"
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  className="form-control"
+                  placeholder="Enter your password"
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="d-grid">
+                <button
+                  type="submit"
+                  className="btn btn-success btn-lg rounded-3"
+                >
+                  Submit
+                </button>
+              </div>
+
+              {/* Signup Link */}
+              {/* <div className="text-center mt-3">
+                <span>
+                  Don’t have an account?{" "}
+                  <Link to="/signup" className="text-primary fw-bold">
+                    Signup
+                  </Link>
+                </span>
+              </div> */}
+            </form>
+          </div>
         </div>
-        <button type="submit" style={styles.button}>
-          Login
-        </button>
-      </form>
+      </div>
+
+      <ToastContainer />
     </div>
   );
-}
-
-// Styles (same style as Signup for consistency)
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f5f6fa",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    padding: "40px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-    width: "350px",
-  },
-  title: {
-    textAlign: "center",
-    marginBottom: "20px",
-    color: "#333",
-  },
-  input: {
-    padding: "12px 15px",
-    marginBottom: "15px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    fontSize: "16px",
-    width: "100%",
-    boxSizing: "border-box",
-  },
-  button: {
-    padding: "12px 15px",
-    backgroundColor: "#4CAF50",
-    color: "#fff",
-    fontSize: "16px",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "background-color 0.3s",
-  },
-  showBtn: {
-    position: "absolute",
-    right: "10px",
-    top: "50%",
-    transform: "translateY(-50%)",
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    color: "#007bff",
-    fontWeight: "bold",
-  },
 };
 
-// Optional hover effect
-styles.button[":hover"] = {
-  backgroundColor: "#45a049",
-};
+export default Login;

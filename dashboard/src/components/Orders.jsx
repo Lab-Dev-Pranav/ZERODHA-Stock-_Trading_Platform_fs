@@ -7,7 +7,7 @@ function Orders() {
 
   useEffect(() => {
     axios.get("http://localhost:4000/orders").then((res) => {
-      // console.log(res.data);
+      console.log("res data", res.data);
       setAllOrders(res.data);
     });
   }, []);
