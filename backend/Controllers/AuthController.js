@@ -51,7 +51,7 @@ module.exports.Login = async (req, res, next) => {
       domain: "localhost",
       path: "/",
       httpOnly: false,
-      secure: false,
+      secure: true,
       sameSite: "none",
     });
     res

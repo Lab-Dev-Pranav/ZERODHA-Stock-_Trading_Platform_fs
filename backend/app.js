@@ -5,7 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 
-const authRoute = require("./Routes/AuthRoute");
+const authRoute = require("./Routes/AuthRoute");  
 
 //Models
 const { HoldingModel } = require("./model/HoldingModel");
@@ -50,6 +50,7 @@ app.use(
 app.use(express.urlencoded({ extended: true })); // ✅ For form-data
 
 app.use("/", authRoute);
+
 
 // Routs
 
@@ -135,15 +136,6 @@ app.get("/orders", async (req, res) => {
   res.json(allorders);
 });
 
-// auth routs
-
-// app.post("/signup", async (req, res) => {
-//   console.log("BE SIGNUP ROUTE", req.body);
-// });
-
-// app.post("/login", async (req, res) => {
-//   console.log("BE LOGIN ROUTE", req.body);
-// });
 
 app.get("/", (req, res) => {
   res.send(`🚀 App started on http://localhost:${port}`);

@@ -2,47 +2,54 @@ import React from "react";
 
 function Awards() {
   return (
-    <div className="container mt-5 mb-5">
-      <br />
-      <br />
-      <br />
-      <div className="row">
-        <div className="col-6">
-          <img src="\media\largestBroker.svg" alt="" />
+    <div className="container my-5 py-4">
+      <div className="row align-items-center gy-5">
+        {/* Left Image Section */}
+        <div className="col-12 col-md-6 text-center">
+          <img
+            src="media/largestBroker.svg"
+            alt="Largest stock broker illustration"
+            className="img-fluid"
+            style={{ maxWidth: "90%", height: "auto" }}
+          />
         </div>
-        <div className="col-6">
-          <h2>Largest stock broker in India</h2>
-          <p className="mt-4 fs-5">
+
+        {/* Right Text Section */}
+        <div className="col-12 col-md-6 text-center text-md-start">
+          <h2 className="fw-bold">Largest stock broker in India</h2>
+
+          <p className="mt-3 fs-5">
             2+ million Zerodha clients contribute to over 15% of all retail
             order volumes in India daily by trading and investing in:
           </p>
 
           <div className="row fs-5 mt-4">
             <div className="col-6">
-              {" "}
-              <ul>
-                <li className="mt-1">Futures and Options</li>
-                <li className="mt-1">Commodity derivatives</li>
-                <li className="mt-1">Currency derivatives</li>
+              <ul className="list-unstyled">
+                <li className="mt-2">Futures and Options</li>
+                <li className="mt-2">Commodity derivatives</li>
+                <li className="mt-2">Currency derivatives</li>
               </ul>
             </div>
             <div className="col-6">
-              {" "}
-              <ul>
-                <li className="mt-1">Stocks & IPOs</li>
-                <li className="mt-1">Direct mutual funds</li>
-                <li className="mt-1">Bonds and Govt. securities</li>
+              <ul className="list-unstyled">
+                <li className="mt-2">Stocks & IPOs</li>
+                <li className="mt-2">Direct mutual funds</li>
+                <li className="mt-2">Bonds and Govt. securities</li>
               </ul>
             </div>
           </div>
-          <div className="row">
-            <img className="mt-5" src="media\pressLogos.png" alt="pressLogos" />
+
+          <div className="mt-4 text-center text-md-start">
+            <img
+              src="media/pressLogos.png"
+              alt="Press logos"
+              className="img-fluid"
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
     </div>
   );
 }

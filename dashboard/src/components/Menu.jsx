@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 function Menu() {
   const location = useLocation();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  
 
   const handleProfileClick = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);

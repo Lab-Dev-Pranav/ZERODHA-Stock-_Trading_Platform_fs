@@ -1,11 +1,7 @@
-
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -15,18 +11,15 @@ function NavBar() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) return;
-
       try {
         const { data } = await axios.post(
           "http://localhost:4000",
           {},
           { withCredentials: true }
         );
-           console.log("nav res data - ",data);
         const { status, user } = data;
-        if (status) {
-          setUsername(user);
-        } else {
+        if (status) setUsername(user);
+        else {
           removeCookie("token");
           navigate("/auth");
         }
@@ -35,7 +28,6 @@ function NavBar() {
         navigate("/auth");
       }
     };
-
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
@@ -45,18 +37,20 @@ function NavBar() {
     navigate("/auth");
   };
 
-  //  window.location.href = "http://localhost:3000";
-
-  const handledashbord = ()=>{
-   window.location.href = "http://localhost:3000";
-  }
+  const handleDashboard = () => {
+    window.location.href = "http://localhost:3000";
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom fs--5">
-      <div className="container-fluid" style={{ padding: "0 250px" }}>
+    <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+      <div className="container-fluid px-3 px-md-5">
         {/* Logo */}
-        <Link className="navbar-brand" to="/">
-          <img src="media/logo.svg" style={{ width: "150px" }} alt="Logo" />
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img
+            src="media/logo.svg"
+            alt="Logo"
+            style={{ width: "130px", maxWidth: "100%" }}
+          />
         </Link>
 
         {/* Toggler for mobile */}
@@ -72,65 +66,57 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Menu items */}
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul className="navbar-nav">
-            <li className="nav-item me-3">
+        {/* Nav links */}
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav align-items-lg-center">
+            <li className="nav-item mx-1">
               <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item mx-1">
               <Link className="nav-link" to="/product">
                 Products
               </Link>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item mx-1">
               <Link className="nav-link" to="/pricing">
                 Pricing
               </Link>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item mx-1 mb-2 mb-lg-0">
               <Link className="nav-link" to="/support">
                 Support
               </Link>
             </li>
 
-            {/* Auth Section */}
             {username ? (
               <>
-              
-                <li className="nav-item me-3 d-flex align-items-center">
+                <li className="nav-item mx-2 mb-2 mb-lg-0">
                   <span className="nav-link fw-bold text-primary">
-                   @{username}
+                    @{username}
                   </span>
                 </li>
-                 <li className="nav-item">
-                     <button
-                      onClick={handledashbord}
-                    className="btn btn-outline-primary btn-sm"
+                <li className="nav-item mx-1 mb-2 mb-lg-0">
+                  <button
+                    onClick={handleDashboard}
+                    className="btn btn-outline-primary btn-sm w-100"
                   >
-                    Dashbord
+                    Dashboard
                   </button>
                 </li>
-                &nbsp;&nbsp;
-                <li className="nav-item">
+                <li className="nav-item mx-1 mb-2 mb-lg-0">
                   <button
                     onClick={handleLogout}
-                    className="btn btn-outline-danger btn-sm"
+                    className="btn btn-outline-danger btn-sm w-100"
                   >
                     Logout
                   </button>
                 </li>
-                
-               
               </>
             ) : (
-              <li className="nav-item me-3">
-                <Link className="btn btn-primary px-3" to="/auth">
+              <li className="nav-item mx-1 mb-2 mb-lg-0">
+                <Link className="btn btn-primary btn-sm px-3 w-100" to="/auth">
                   Login / Signup
                 </Link>
               </li>

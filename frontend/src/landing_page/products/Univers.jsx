@@ -1,12 +1,17 @@
 import React from "react";
-import "./Univers.css"; // custom styles here
+import "./Univers.css"; // custom styles
 import { Link } from "react-router-dom";
 
 function PartnerCard({ imgSrc, text }) {
   return (
     <div className="col-12 col-md-4 text-center d-flex flex-column align-items-center mb-4">
-      <img style={{ height: "50px" }} src={imgSrc} alt="" />
-      <p className="partner-text">{text}</p>
+      <img
+        src={imgSrc}
+        alt={text}
+        className="img-fluid"
+        style={{ maxHeight: "50px" }}
+      />
+      <p className="partner-text mt-3">{text}</p>
     </div>
   );
 }
@@ -41,20 +46,25 @@ function Univers() {
 
   return (
     <div className="container py-5">
+      {/* Header */}
       <div className="row mb-5 text-center">
-        <h3>The Zerodha Universe</h3>
-        <p>
-          Extend your trading and investment experience even further with our
-          partner platforms
-        </p>
+        <div className="col">
+          <h3>The Zerodha Universe</h3>
+          <p className="mb-0">
+            Extend your trading and investment experience even further with our
+            partner platforms
+          </p>
+        </div>
       </div>
 
-      <div className="row" style={{ width: "80%", margin: "0 auto" }}>
+      {/* Partners */}
+      <div className="row mx-auto">
         {partners.map((p, i) => (
           <PartnerCard key={i} imgSrc={p.img} text={p.text} />
         ))}
       </div>
 
+      {/* Signup Button */}
       <div className="row mt-5">
         <div className="col text-center">
           <Link to="/signup">

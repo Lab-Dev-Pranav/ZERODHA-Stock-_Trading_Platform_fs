@@ -1,9 +1,10 @@
 .partner-text {
   font-size: 14px;
-  padding-top: 20px;
+  line-height: 1.5;
 }
 
 .my-button-hover-dark:hover {
   background-color: black;
   color: white;
+  transition: 0.3s;
 }

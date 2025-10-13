@@ -42,7 +42,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          // window.location.href = "http://localhost:5173/";
+          window.location.href = "http://localhost:5173/";
         }, 2000);
       } else {
         handleError(message);
