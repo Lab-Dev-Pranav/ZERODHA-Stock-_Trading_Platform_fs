@@ -268,3 +268,50 @@
 .btn-cancel:hover {
   background-color: #6b7280; /* gray-500 */
 }
+
+
+
+
+/* ------------------------------ */
+
+
+
+
+.buy-window-wrapper {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1050;
+}
+
+.buy-card {
+  width: 380px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.buy-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #3cd278);
+  border: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #dc3545, #ff6b6b);
+  border: none;
+}
+
+.btn-outline-secondary:hover {
+  background: #6c757d;
+  color: #fff;
+}

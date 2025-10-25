@@ -15,21 +15,21 @@ function Team() {
         {/* Image Column */}
         <div className="col-12 col-md-4 text-center mb-4 mb-md-0">
           <img
-            src="media/nithinKamath.jpg"
+            src="media/IMG_20251011_121603.jpg"
             alt="Nithin Kamath"
             className="rounded-circle img-fluid"
             style={{ maxHeight: "250px" }}
           />
           <div className="mt-3">
-            <h6>Nithin Kamath</h6>
-            <p>Founder & CEO</p>
+            <h6>Pranav S Patil</h6>
+            <p>Developer / Founder & CEO</p>
           </div>
         </div>
 
         {/* Description Column */}
         <div className="col-12 col-md-8">
           <p className="lh-lg">
-            Nithin bootstrapped and founded Zerodha in 2010 to overcome the
+            Pranav bootstrapped and founded Zerodha in 2010 to overcome the
             hurdles he faced during his decade-long stint as a trader. Today,
             Zerodha has changed the landscape of the Indian broking industry.
           </p>

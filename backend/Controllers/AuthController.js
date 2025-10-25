@@ -1,6 +1,7 @@
 const UserModel = require("../model/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
 module.exports.Signup = async (req, res, next) => {
   try {
@@ -16,16 +17,22 @@ module.exports.Signup = async (req, res, next) => {
       createdAt,
     });
     const token = createSecretToken(user._id);
+    const isProd = process.env.NODE_ENV === "production";
+
+    // Set cookie; in development we avoid secure/httpOnly restrictions so localhost works.
     res.cookie("token", token, {
-      domain: "localhost",
       path: "/",
-      httpOnly: false,
-      secure: true,
-      sameSite: "none",
+      httpOnly: isProd, // allow JS access in dev so dashboard can read if needed; lock down in prod
+      secure: isProd, // require HTTPS in production
+      sameSite: isProd ? "none" : "lax",
     });
-    res
-      .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
+
+    res.status(201).json({
+      message: "User signed up successfully",
+      success: true,
+      user,
+      token, // return token so other clients (dashboard) can store/use it if cookies are problematic in dev
+    });
     next();
   } catch (error) {
     console.error(error);
@@ -47,16 +54,20 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
+    const isProd = process.env.NODE_ENV === "production";
+
     res.cookie("token", token, {
-      domain: "localhost",
       path: "/",
-      httpOnly: false,
-      secure: true,
-      sameSite: "none",
+      httpOnly: isProd,
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
     });
-    res
-      .status(201)
-      .json({ message: "User logged in successfully", success: true });
+
+    res.status(200).json({
+      message: "User logged in successfully",
+      success: true,
+      token, // returning token so dashboard/other clients can use Authorization header if needed
+    });
     next();
   } catch (error) {
     console.error(error);

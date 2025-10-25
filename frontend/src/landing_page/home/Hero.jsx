@@ -12,7 +12,7 @@ function Hero() {
           more
         </p>
 
-        <Link to="/signup">
+        <Link to="/auth">
           <button
             style={{ width: "200px", height: "50px", margin: "0 auto" }}
             className="btn btn-primary fs-5 mb-5"
