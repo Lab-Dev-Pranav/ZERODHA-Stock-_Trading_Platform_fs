@@ -40,7 +40,10 @@ mongoose
 
 app.use(
   cors({
-    origin: [ "http://localhost:3000", "http://localhost:5173" ], // ✅ exact frontend URL
+
+                    // DASHBOARD-Frontend-URL
+    // origin: [ "http://localhost:3000", "http://localhost:5173" ], // ✅ exact frontend URL
+     origin: [ "https://dashboard-zerodha-stock-trading-platform.onrender.com/", "https://zerodha-stock-trading-platform-fs.onrender.com/" ],
     credentials: true, // ✅ allow cookies/headers
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // ✅ allow these
     allowedHeaders: ["Content-Type", "Authorization"], // ✅ allow headers
