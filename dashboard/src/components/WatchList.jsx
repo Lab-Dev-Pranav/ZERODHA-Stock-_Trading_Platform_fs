@@ -9,7 +9,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import GeneralContext from "./GeneralContext";
 import "./WatchList.css";
 import { watchlist } from "../data/Data";
-import { DoughnutChart } from "./doughnutChart";
+import DoughnutChart from "./DoughnutChart";
+
 
 function WatchList() {
   const [searchTerm, setSearchTerm] = useState(""); // 🔍 search state
