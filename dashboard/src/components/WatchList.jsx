@@ -13,7 +13,7 @@ import DoughnutChart from "./DoughnutChart";
 
 
 function WatchList() {
-  const [searchTerm, setSearchTerm] = useState(""); // 🔍 search state
+  const [searchTerm, setSearchTerm] = useState("");
 
   const labels = watchlist.map((subarray) => subarray["name"]);
 
@@ -44,7 +44,6 @@ function WatchList() {
     ],
   };
 
-  // 🔍 Filter stocks based on search term
   const filteredWatchlist = watchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
   );
