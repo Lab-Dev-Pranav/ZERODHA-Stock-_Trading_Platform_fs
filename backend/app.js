@@ -41,17 +41,15 @@ mongoose
 app.use(
   cors({
 
-                    // DASHBOARD-Frontend-URL
-    origin: [ "http://localhost:3000", "http://localhost:5173" , "https://dashboard-zerodha-stock-trading-platform.onrender.com/", "https://zerodha-stock-trading-platform-fs.onrender.com/"], // ✅ exact frontend URL
-    //  origin: [ "https://dashboard-zerodha-stock-trading-platform.onrender.com/", "https://zerodha-stock-trading-platform-fs.onrender.com/" ],
-    credentials: true, // ✅ allow cookies/headers
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // ✅ allow these
-    allowedHeaders: ["Content-Type", "Authorization"], // ✅ allow headers
+                    // DASHBOARD-Frontend-URL both offline and online origin
+    origin: [ "http://localhost:3000", "http://localhost:5173" , "https://dashboard-zerodha-stock-trading-platform.onrender.com/", "https://zerodha-stock-trading-platform-fs.onrender.com/"], 
+    credentials: true, 
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-app.use(express.urlencoded({ extended: true })); // ✅ For form-data
-
+app.use(express.urlencoded({ extended: true })); 
 app.use("/", authRoute);
 
 
