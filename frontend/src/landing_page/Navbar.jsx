@@ -38,7 +38,8 @@ function NavBar() {
   };
 
   const handleDashboard = () => {
-    window.location.href = "http://localhost:3000";
+    window.open("http://localhost:3000", "_blank");
+    
   };
 
   return (
