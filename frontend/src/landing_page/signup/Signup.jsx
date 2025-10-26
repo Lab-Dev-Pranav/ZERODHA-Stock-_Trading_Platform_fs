@@ -32,10 +32,8 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        // "http://localhost:4000/signup"
-        // use env
-        `${process.env.BACKEND_URL}/signup`,
-          // `${import.meta.env.BACKEND_URL}/signup`,  
+        "http://localhost:4000/signup",
+        // "/api/signup",
         {
           ...inputValue,
         },

@@ -44,5 +44,14 @@ const styles = {
   },
 };
 
+// function SignupPage() {
+//   return (
+//       <div className="container">
+//         <div className="row">
+//           <h1>Signup Page</h1>
+//         </div>
+//       </div>
+//   );
+// }
 
 export default SignupPage;
