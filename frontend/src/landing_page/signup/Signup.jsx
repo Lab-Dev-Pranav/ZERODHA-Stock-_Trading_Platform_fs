@@ -35,6 +35,7 @@ const Signup = () => {
         // "http://localhost:4000/signup"
         // use env
         `${process.env.BACKEND_URL}/signup`,
+          // `${import.meta.env.BACKEND_URL}/signup`,  
         {
           ...inputValue,
         },

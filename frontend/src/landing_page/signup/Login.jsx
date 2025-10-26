@@ -33,7 +33,8 @@ const Login = () => {
       const { data } = await axios.post(
         // "http://localhost:4000/login"
         // use env
-        `${process.env.BACKEND_URL}/login`,
+        // `${process.env.BACKEND_URL}/login`,
+          `${import.meta.env.BACKEND_URL}/login`,  
         {
           ...inputValue,
         },
