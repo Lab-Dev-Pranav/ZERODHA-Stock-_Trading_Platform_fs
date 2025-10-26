@@ -31,7 +31,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/login",
+        // "http://localhost:4000/login"
+        // use env
+        `${process.env.BACKEND_URL}/login`,
         {
           ...inputValue,
         },
@@ -42,7 +44,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "http://localhost:5173/";
+          window.location.href = "/";
         }, 2000);
       } else {
         handleError(message);
