@@ -1,6 +1,6 @@
 # 📈 Zerodha Stock Trading Platform (Clone)
 
-A full-stack clone of [Zerodha](https://zerodha.com), built for learning purposes.  
+A full-stack clone of Zerodha, built for learning purposes.  
 This project demonstrates user authentication, order management, live market data simulation, and a trading dashboard.
 
 ---
